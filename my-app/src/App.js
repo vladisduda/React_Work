@@ -1,11 +1,14 @@
 import React from 'react'
 
-//Константы с тегами можно возвращать через return:
-
 function App() {
-	const str = <main>text</main>
-
-	return str
+	return (
+		<div>
+			<input />
+			<br />
+			<input />
+			<br />
+			<input />
+		</div>
+	)
 }
-
 export default App
