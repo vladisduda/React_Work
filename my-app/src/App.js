@@ -1,14 +1,16 @@
 import React from 'react'
 
 function App() {
-	function showMess(text) {
-		alert(text)
+	function func(event) {
+		console.log(event) // объект с событием
+	}
+	function func1(event) {
+		console.log(event.target) // event target of the click
 	}
 	return (
 		<div>
-			<button onClick={() => showMess('1')}>1</button>
-			<button onClick={() => showMess('2')}>2</button>
-			<button onClick={() => showMess('3')}>3</button>
+			<button onClick={func}>event</button>
+			<button onClick={func1}>event.target</button>
 		</div>
 	)
 }
