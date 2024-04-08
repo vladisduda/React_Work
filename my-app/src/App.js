@@ -1,8 +1,8 @@
 import React from 'react'
 function App() {
-	const isAuth = true
+	const isAuth = false
 
-	return <div>{isAuth && <p>Вы авторизованы</p>}</div>
+	return <div>{isAuth === false && <p>Пожалуйста, авторизуйтесь</p>}</div>
 }
 
 export default App
