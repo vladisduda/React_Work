@@ -1,11 +1,20 @@
 import React from 'react'
 
 function App() {
-	function getDigitsSum(a, b, c, d, e) {
-		return a + b + c + d + e
+	function show1() {
+		alert('вы нажали на первую кнопку')
 	}
-	const sum = getDigitsSum(1, 2, 3, 4, 5)
-	return <p>Сумма цифр числа 12345 = {sum}</p>
+
+	function show2() {
+		alert('вы нажали на вторую кнопку')
+	}
+
+	return (
+		<div>
+			<button onClick={show1}>первая кнопка</button>
+			<button onClick={show2}>вторая кнопка</button>
+		</div>
+	)
 }
 
 export default App
