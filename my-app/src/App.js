@@ -1,18 +1,14 @@
 import React from 'react'
 
 function App() {
-	function show1() {
-		alert('вы нажали на первую кнопку')
+	function showMess(text) {
+		alert(text)
 	}
-
-	function show2() {
-		alert('вы нажали на вторую кнопку')
-	}
-
 	return (
 		<div>
-			<button onClick={show1}>первая кнопка</button>
-			<button onClick={show2}>вторая кнопка</button>
+			<button onClick={() => showMess('1')}>1</button>
+			<button onClick={() => showMess('2')}>2</button>
+			<button onClick={() => showMess('3')}>3</button>
 		</div>
 	)
 }
