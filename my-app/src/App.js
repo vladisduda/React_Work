@@ -1,15 +1,11 @@
 import React from 'react'
 
-function App() {
-	const items = (
-		<div>
-			<li>text1</li>
-			<li>text2</li>
-			<li>text3</li>
-		</div>
-	)
+//Константы с тегами можно возвращать через return:
 
-	return <ul>{items}</ul>
+function App() {
+	const str = <main>text</main>
+
+	return str
 }
 
 export default App
