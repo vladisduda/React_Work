@@ -1,37 +1,17 @@
 import React from 'react'
 
 function App() {
-	//Первый вариант
-	return (
-		<>
-			<ul>
-				<li>text1</li>
-				<li>text2</li>
-				<li>text3</li>
-			</ul>
-			<ul>
-				<li>text1</li>
-				<li>text2</li>
-				<li>text3</li>
-			</ul>
-		</>
-	)
+	const li1 = <li>text1</li>
+	const li2 = <li>text2</li>
+	const li3 = <li>text3</li>
 
-	// Второй вариант
-	// return (
-	// 	<div>
-	// 		<ul>
-	// 			<li>text1</li>
-	// 			<li>text2</li>
-	// 			<li>text3</li>
-	// 		</ul>
-	// 		<ul>
-	// 			<li>text1</li>
-	// 			<li>text2</li>
-	// 			<li>text3</li>
-	// 		</ul>
-	// 	</div>
-	// )
+	return (
+		<ul>
+			{li1}
+			{li2}
+			{li3}
+		</ul>
+	)
 }
 
 export default App
