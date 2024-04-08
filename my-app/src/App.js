@@ -1,9 +1,9 @@
 import React from 'react'
 
 function App() {
-	const attr = 'block'
+	const str = <p>ТЭКСТ</p>
 
-	return <div id={attr}>text</div>
+	return <div>{str}</div>
 }
 
 export default App
