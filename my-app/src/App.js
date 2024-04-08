@@ -1,11 +1,14 @@
 import React from 'react'
 
 function App() {
-	const arr = []
-	for (let i = 1; i <= 5; i++) {
-		arr.push(<li>{i}</li>)
-	}
+	const arr = ['a', 'b', 'c', 'd', 'e']
 
-	return <ul>{arr}</ul>
+	return (
+		<ul>
+			{arr.map((item, index) => (
+				<li key={index}>{item}</li>
+			))}
+		</ul>
+	)
 }
 export default App
