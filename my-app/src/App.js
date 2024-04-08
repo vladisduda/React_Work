@@ -1,13 +1,15 @@
 import React from 'react'
 
 function App() {
+	const str1 = 'text1'
+	const str2 = 'text1'
+
 	return (
-		<>
-			<input />
-			<input />
-			<input />
-		</>
-	) // ошибка - не было '/'
+		<div>
+			<p>{str1}</p>
+			<p>{str2} </p>
+		</div>
+	)
 }
 
 export default App
