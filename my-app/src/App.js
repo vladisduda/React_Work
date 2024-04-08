@@ -1,16 +1,8 @@
 import React from 'react'
 function App() {
-	const age = 19
+	const isAuth = true
 
-	return (
-		<div>
-			{age > 18 ? (
-				<p>Вы совершеннолетний!</p>
-			) : (
-				<p>Вы еще не достигли 18 лет.</p>
-			)}
-		</div>
-	)
+	return <div>{isAuth && <p>Вы авторизованы</p>}</div>
 }
 
 export default App
