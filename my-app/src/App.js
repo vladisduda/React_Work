@@ -1,17 +1,17 @@
 import React from 'react'
 
-// Можно сделать так, чтобы в переменной хранился не текст, а тег:
-
 function App() {
-	let text
-	const show = true
+	const isAdult = true
 
-	if (show) {
-		text = <p>text1</p>
-	} else {
-		text = <p>text2</p>
-	}
-
-	return <div>{text}</div>
+	return (
+		<div>
+			{isAdult ? (
+				<p>Вы уже совершеннолетний!</p>
+			) : (
+				<p>Вы еще не достигли 18 лет.</p>
+			)}
+		</div>
+	)
 }
+
 export default App
