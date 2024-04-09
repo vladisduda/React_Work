@@ -1,23 +1,34 @@
 import React, { useState } from 'react'
 
 function App() {
-	const [input1, setInput1] = useState('')
-	const [input2, setInput2] = useState('')
+	const [age, setAge] = useState(0)
+	const [fahrenheit, setFahrenheit] = useState(0)
 
-	function handleInput1Change(event) {
-		setInput1(event.target.value)
+	function handleAgeChange(event) {
+		setAge(event.target.value)
 	}
 
-	function handleInput2Change(event) {
-		setInput2(event.target.value)
+	function handleFahrenheitChange(event) {
+		setFahrenheit(event.target.value)
 	}
+
+	const currentYear = new Date().getFullYear()
+	const birthYear = currentYear - age
+	const celsius = ((fahrenheit - 32) * 5) / 9
 
 	return (
 		<div>
-			<input value={input1} onChange={handleInput1Change} />
-			<p>text1: {input1}</p>
-			<input value={input2} onChange={handleInput2Change} />
-			<p>text2: {input2}</p>
+			<p>№1</p>
+			<input type='number' value={age} onChange={handleAgeChange} />
+			<p>Год рождения: {birthYear}</p>
+
+			<p>№2</p>
+			<input
+				type='number'
+				value={fahrenheit}
+				onChange={handleFahrenheitChange}
+			/>
+			<p>Градусы Цельсия: {celsius.toFixed(2)}</p>
 		</div>
 	)
 }
