@@ -1,27 +1,23 @@
 import React, { useState } from 'react'
 
 function App() {
-	const [isBanned, setIsBanned] = useState(false)
+	const [number, setNumber] = useState(0)
 
-	function banUser() {
-		setIsBanned(true)
+	function increaseNumber() {
+		setNumber(number + 1)
 	}
 
-	function unbanUser() {
-		setIsBanned(false)
+	function decreaseNumber() {
+		if (number > 0) {
+			setNumber(number - 1)
+		}
 	}
 
 	return (
 		<div>
-			<span>
-				{isBanned ? 'Пользователь забанен' : 'Пользователь не забанен'}
-			</span>
-			<br />
-			{isBanned ? (
-				<button onClick={unbanUser}>Разбанить пользователя</button>
-			) : (
-				<button onClick={banUser}>Забанить пользователя</button>
-			)}
+			<p>Число: {number}</p>
+			<button onClick={increaseNumber}>Увеличить число</button>
+			<button onClick={decreaseNumber}>Уменьшить число</button>
 		</div>
 	)
 }
