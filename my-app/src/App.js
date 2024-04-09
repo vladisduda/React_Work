@@ -1,95 +1,74 @@
 import React, { useState } from 'react'
 
 function App() {
-	const [number1, setNumber1] = useState()
-	const [number2, setNumber2] = useState()
-	const [date1, setDate1] = useState()
-	const [date2, setDate2] = useState()
-	const [sum, setSum] = useState()
-	const [product, setProduct] = useState()
-	const [dateDifference, setDateDifference] = useState()
+	const [value1, setValue1] = useState('')
+	const [value2, setValue2] = useState('')
 
-	const sumHandler = () => {
-		setSum(number1 + number2)
+	const handleChange1 = event => {
+		setValue1(event.target.value)
 	}
 
-	const productHandler = () => {
-		setProduct(number1 * number2)
+	const handleChange2 = event => {
+		setValue2(event.target.value)
 	}
 
-	const dateDifferenceHandler = () => {
-		const oneDay = 24 * 60 * 60 * 1000 // milliseconds in a day
-		const diffInDays = Math.round(
-			Math.abs((new Date(date1) - new Date(date2)) / oneDay)
-		)
-		setDateDifference(diffInDays)
+	const translit = text => {
+		const translitMap = {
+			а: 'a',
+			б: 'b',
+			в: 'v',
+			г: 'g',
+			д: 'd',
+			е: 'e',
+			ё: 'yo',
+			ж: 'zh',
+			з: 'z',
+			и: 'i',
+			й: 'y',
+			к: 'k',
+			л: 'l',
+			м: 'm',
+			н: 'n',
+			о: 'o',
+			п: 'p',
+			р: 'r',
+			с: 's',
+			т: 't',
+			у: 'u',
+			ф: 'f',
+			х: 'kh',
+			ц: 'ts',
+			ч: 'ch',
+			ш: 'sh',
+			щ: 'shch',
+			ы: 'y',
+			э: 'e',
+			ю: 'yu',
+			я: 'ya',
+		}
+
+		return text
+			.toLowerCase()
+			.split('')
+			.map(char => translitMap[char] || char)
+			.join('')
+	}
+
+	const calculateSum = () => {
+		const numbers = value2.split('\n').map(Number)
+		const sum = numbers.reduce((acc, curr) => acc + curr, 0)
+		return sum
 	}
 
 	return (
 		<div>
 			<h3>№1</h3>
-			<input
-				type='number'
-				value={number1}
-				onChange={e => setNumber1(+e.target.value)}
-			/>
-			<input
-				type='number'
-				value={number2}
-				onChange={e => setNumber2(+e.target.value)}
-			/>
-			<button onClick={sumHandler}>Сумма</button>
-			<button onClick={productHandler}>Произведение</button>
-			<p>Сумма: {sum}</p>
-			<p>Произведение: {product}</p>
+			<textarea value={value1} onChange={handleChange1} />
+			<p>{translit(value1)}</p>
 
-			<h3>№2-3</h3>
-			{/* Default values are set to current date */}
-			<input
-				type='date'
-				value={date1}
-				onChange={e => setDate1(e.target.value)}
-			/>
-			<input
-				type='date'
-				value={date2}
-				onChange={e => setDate2(e.target.value)}
-			/>
-			<button onClick={dateDifferenceHandler}>Разница в днях</button>
-			<p>Разница в днях: {dateDifference}</p>
-
-			<h3>№4</h3>
-			<input
-				type='number'
-				value={number1}
-				onChange={e => setNumber1(+e.target.value)}
-				onBlur={() =>
-					setSum(
-						number1
-							.toString()
-							.split('')
-							.reduce((acc, curr) => acc + +curr, 0)
-					)
-				}
-			/>
-			<p>Сумма цифр: {sum}</p>
-
-			<h3>№5</h3>
-			<input
-				type='number'
-				value={number2}
-				onChange={e => setNumber2(+e.target.value)}
-				onBlur={() => {
-					let product = 1
-					for (let i = 1; i <= number2; i++) {
-						if (number2 % i === 0) {
-							product *= i
-						}
-					}
-					setProduct(product)
-				}}
-			/>
-			<p>Произведение делителей: {product}</p>
+			<h3>№2</h3>
+			<textarea value={value2} onChange={handleChange2} />
+			<p>Сумма чисел: {calculateSum()}</p>
 		</div>
 	)
 }
