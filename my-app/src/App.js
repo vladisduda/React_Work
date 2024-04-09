@@ -1,15 +1,23 @@
 import React, { useState } from 'react'
 
-const App = () => {
-	const [name, setName] = useState('Максим')
-	const [surname, setSurname] = useState('Русый')
-	const [age, setAge] = useState('14')
+function App() {
+	const [input1, setInput1] = useState('')
+	const [input2, setInput2] = useState('')
+
+	function handleInput1Change(event) {
+		setInput1(event.target.value)
+	}
+
+	function handleInput2Change(event) {
+		setInput2(event.target.value)
+	}
 
 	return (
 		<div>
-			<p>Имя: {name}</p>
-			<p>Фамилия: {surname}</p>
-			<p>Возраст: {age}</p>
+			<input value={input1} onChange={handleInput1Change} />
+			<p>text1: {input1}</p>
+			<input value={input2} onChange={handleInput2Change} />
+			<p>text2: {input2}</p>
 		</div>
 	)
 }
