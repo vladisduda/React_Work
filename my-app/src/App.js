@@ -1,42 +1,95 @@
 import React, { useState } from 'react'
 
 function App() {
-	const [num1, setNum1] = useState(0)
-	const [num2, setNum2] = useState(0)
-	const [num3, setNum3] = useState(0)
-	const [num4, setNum4] = useState(0)
-	const [num5, setNum5] = useState(0)
+	const [number1, setNumber1] = useState()
+	const [number2, setNumber2] = useState()
+	const [date1, setDate1] = useState()
+	const [date2, setDate2] = useState()
+	const [sum, setSum] = useState()
+	const [product, setProduct] = useState()
+	const [dateDifference, setDateDifference] = useState()
 
-	const average = (num1 + num2 + num3 + num4 + num5) / 5
+	const sumHandler = () => {
+		setSum(number1 + number2)
+	}
+
+	const productHandler = () => {
+		setProduct(number1 * number2)
+	}
+
+	const dateDifferenceHandler = () => {
+		const oneDay = 24 * 60 * 60 * 1000 // milliseconds in a day
+		const diffInDays = Math.round(
+			Math.abs((new Date(date1) - new Date(date2)) / oneDay)
+		)
+		setDateDifference(diffInDays)
+	}
 
 	return (
 		<div>
+			<h3>№1</h3>
 			<input
 				type='number'
-				value={num1}
-				onChange={e => setNum1(+e.target.value)}
+				value={number1}
+				onChange={e => setNumber1(+e.target.value)}
 			/>
 			<input
 				type='number'
-				value={num2}
-				onChange={e => setNum2(+e.target.value)}
+				value={number2}
+				onChange={e => setNumber2(+e.target.value)}
+			/>
+			<button onClick={sumHandler}>Сумма</button>
+			<button onClick={productHandler}>Произведение</button>
+			<p>Сумма: {sum}</p>
+			<p>Произведение: {product}</p>
+
+			<h3>№2-3</h3>
+			{/* Default values are set to current date */}
+			<input
+				type='date'
+				value={date1}
+				onChange={e => setDate1(e.target.value)}
 			/>
 			<input
-				type='number'
-				value={num3}
-				onChange={e => setNum3(+e.target.value)}
+				type='date'
+				value={date2}
+				onChange={e => setDate2(e.target.value)}
 			/>
+			<button onClick={dateDifferenceHandler}>Разница в днях</button>
+			<p>Разница в днях: {dateDifference}</p>
+
+			<h3>№4</h3>
 			<input
 				type='number'
-				value={num4}
-				onChange={e => setNum4(+e.target.value)}
+				value={number1}
+				onChange={e => setNumber1(+e.target.value)}
+				onBlur={() =>
+					setSum(
+						number1
+							.toString()
+							.split('')
+							.reduce((acc, curr) => acc + +curr, 0)
+					)
+				}
 			/>
+			<p>Сумма цифр: {sum}</p>
+
+			<h3>№5</h3>
 			<input
 				type='number'
-				value={num5}
-				onChange={e => setNum5(+e.target.value)}
+				value={number2}
+				onChange={e => setNumber2(+e.target.value)}
+				onBlur={() => {
+					let product = 1
+					for (let i = 1; i <= number2; i++) {
+						if (number2 % i === 0) {
+							product *= i
+						}
+					}
+					setProduct(product)
+				}}
 			/>
-			<p>Среднее арифметическое: {average}</p>
+			<p>Произведение делителей: {product}</p>
 		</div>
 	)
 }
