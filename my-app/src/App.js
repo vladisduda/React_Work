@@ -1,34 +1,42 @@
 import React, { useState } from 'react'
 
 function App() {
-	const [age, setAge] = useState(0)
-	const [fahrenheit, setFahrenheit] = useState(0)
+	const [num1, setNum1] = useState(0)
+	const [num2, setNum2] = useState(0)
+	const [num3, setNum3] = useState(0)
+	const [num4, setNum4] = useState(0)
+	const [num5, setNum5] = useState(0)
 
-	function handleAgeChange(event) {
-		setAge(event.target.value)
-	}
-
-	function handleFahrenheitChange(event) {
-		setFahrenheit(event.target.value)
-	}
-
-	const currentYear = new Date().getFullYear()
-	const birthYear = currentYear - age
-	const celsius = ((fahrenheit - 32) * 5) / 9
+	const average = (num1 + num2 + num3 + num4 + num5) / 5
 
 	return (
 		<div>
-			<p>№1</p>
-			<input type='number' value={age} onChange={handleAgeChange} />
-			<p>Год рождения: {birthYear}</p>
-
-			<p>№2</p>
 			<input
 				type='number'
-				value={fahrenheit}
-				onChange={handleFahrenheitChange}
+				value={num1}
+				onChange={e => setNum1(+e.target.value)}
 			/>
-			<p>Градусы Цельсия: {celsius.toFixed(2)}</p>
+			<input
+				type='number'
+				value={num2}
+				onChange={e => setNum2(+e.target.value)}
+			/>
+			<input
+				type='number'
+				value={num3}
+				onChange={e => setNum3(+e.target.value)}
+			/>
+			<input
+				type='number'
+				value={num4}
+				onChange={e => setNum4(+e.target.value)}
+			/>
+			<input
+				type='number'
+				value={num5}
+				onChange={e => setNum5(+e.target.value)}
+			/>
+			<p>Среднее арифметическое: {average}</p>
 		</div>
 	)
 }
