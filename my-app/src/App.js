@@ -27,24 +27,28 @@ function App() {
 	const [prop2, setProp2] = useState('')
 	const [prop3, setProp3] = useState('')
 
-	const addNote = () => {
-		const newNote = {
-			id: Math.random().toString(36).substr(2, 9),
-			prop1: 'newValue1',
-			prop2: 'newValue2',
-			prop3: 'newValue3',
-		}
-		setNotes([...notes, newNote])
+	const deleteNote = id => {
+		setNotes(notes.filter(note => note.id !== id))
 	}
 
-	const addNoteFromInput = () => {
-		const newNote = {
-			id: Math.random().toString(36).substr(2, 9),
-			prop1: prop1,
-			prop2: prop2,
-			prop3: prop3,
-		}
-		setNotes([...notes, newNote])
+	const loadNoteToInputs = id => {
+		const note = notes.find(note => note.id === id)
+		setProp1(note.prop1)
+		setProp2(note.prop2)
+		setProp3(note.prop3)
+	}
+
+	const updateNoteFromInputs = id => {
+		setNotes(
+			notes.map(note => {
+				if (note.id === id) {
+					note.prop1 = prop1
+					note.prop2 = prop2
+					note.prop3 = prop3
+				}
+				return note
+			})
+		)
 	}
 
 	return (
@@ -55,11 +59,16 @@ function App() {
 						<span>{note.prop1}</span>
 						<span>{note.prop2}</span>
 						<span>{note.prop3}</span>
+						<button onClick={() => deleteNote(note.id)}>Удалить</button>
+						<button onClick={() => loadNoteToInputs(note.id)}>
+							Загрузить в инпуты
+						</button>
+						<button onClick={() => updateNoteFromInputs(note.id)}>
+							Обновить из инпутов
+						</button>
 					</li>
 				))}
 			</ul>
-			<button onClick={addNote}>Добавить заметку</button>
-			<br />
 			<input
 				type='text'
 				value={prop1}
@@ -75,7 +84,6 @@ function App() {
 				value={prop3}
 				onChange={e => setProp3(e.target.value)}
 			/>
-			<button onClick={addNoteFromInput}>Добавить заметку из инпута</button>
 		</div>
 	)
 }
