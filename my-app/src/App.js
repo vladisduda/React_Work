@@ -1,44 +1,50 @@
 import React, { useState } from 'react'
 
 function App() {
-	const [date, setDate] = useState({
-		year: 2025,
-		month: 12,
-		day: 31,
-	})
+	//№1
+	const [notes, setNotes] = useState([1, 2, 3, 4, 5])
 
-	function handleInputChange(event, field) {
-		const newValue = parseInt(event.target.value, 10)
-		setDate({ ...date, [field]: newValue })
+	function addNewNote() {
+		const newNote = notes.length + 1
+		setNotes([...notes, newNote])
 	}
 
-	const dateObject = new Date(date.year, date.month - 1, date.day)
-	const dayOfWeek = dateObject.toLocaleString('default', { weekday: 'long' })
+	const result = notes.map((note, index) => {
+		return <li key={index}>{note}</li>
+	})
 
 	return (
 		<div>
-			<p>Год: {date.year}</p>
-			<p>Месяц: {date.month}</p>
-			<p>День: {date.day}</p>
-			<p>День недели: {dayOfWeek}</p>
-
-			<input
-				type='number'
-				value={date.year}
-				onChange={e => handleInputChange(e, 'year')}
-			/>
-			<input
-				type='number'
-				value={date.month}
-				onChange={e => handleInputChange(e, 'month')}
-			/>
-			<input
-				type='number'
-				value={date.day}
-				onChange={e => handleInputChange(e, 'day')}
-			/>
+			<ul>{result}</ul>
+			<button onClick={addNewNote}>Добавить элемент</button>
 		</div>
 	)
+	//№2
+	// const [notes, setNotes] = useState([1, 2, 3, 4, 5])
+	// 	const [newNoteText, setNewNoteText] = useState('')
+
+	// 	function addNewNote() {
+	// 		if (newNoteText.trim()) {
+	// 			setNotes([...notes, newNoteText])
+	// 			setNewNoteText('')
+	// 		}
+	// 	}
+
+	// 	const result = notes.map((note, index) => {
+	// 		return <li key={index}>{note}</li>
+	// 	})
+
+	// 	return (
+	// 		<div>
+	// 			<ul>{result}</ul>
+	// 			<input
+	// 				type='text'
+	// 				value={newNoteText}
+	// 				onChange={e => setNewNoteText(e.target.value)}
+	// 			/>
+	// 			<button onClick={addNewNote}>Добавить элемент</button>
+	// 		</div>
+	// 	)
 }
 
 export default App
