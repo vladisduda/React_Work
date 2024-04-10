@@ -1,74 +1,60 @@
 import React, { useState } from 'react'
 
 function App() {
-	const [value1, setValue1] = useState('')
-	const [value2, setValue2] = useState('')
+	const [isChecked, setIsChecked] = useState(false)
+	const [message, setMessage] = useState('')
+	const [htmlChecked, setHtmlChecked] = useState(false)
+	const [cssChecked, setCssChecked] = useState(false)
+	const [jsChecked, setJsChecked] = useState(false)
 
-	const handleChange1 = event => {
-		setValue1(event.target.value)
-	}
-
-	const handleChange2 = event => {
-		setValue2(event.target.value)
-	}
-
-	const translit = text => {
-		const translitMap = {
-			а: 'a',
-			б: 'b',
-			в: 'v',
-			г: 'g',
-			д: 'd',
-			е: 'e',
-			ё: 'yo',
-			ж: 'zh',
-			з: 'z',
-			и: 'i',
-			й: 'y',
-			к: 'k',
-			л: 'l',
-			м: 'm',
-			н: 'n',
-			о: 'o',
-			п: 'p',
-			р: 'r',
-			с: 's',
-			т: 't',
-			у: 'u',
-			ф: 'f',
-			х: 'kh',
-			ц: 'ts',
-			ч: 'ch',
-			ш: 'sh',
-			щ: 'shch',
-			ы: 'y',
-			э: 'e',
-			ю: 'yu',
-			я: 'ya',
+	const handleButtonClick = () => {
+		if (isChecked) {
+			setMessage('Приветствую вас!')
+		} else {
+			setMessage('До свидания!')
 		}
-
-		return text
-			.toLowerCase()
-			.split('')
-			.map(char => translitMap[char] || char)
-			.join('')
-	}
-
-	const calculateSum = () => {
-		const numbers = value2.split('\n').map(Number)
-		const sum = numbers.reduce((acc, curr) => acc + curr, 0)
-		return sum
 	}
 
 	return (
 		<div>
 			<h3>№1</h3>
-			<textarea value={value1} onChange={handleChange1} />
-			<p>{translit(value1)}</p>
-
+			<input
+				type='checkbox'
+				checked={isChecked}
+				onChange={() => setIsChecked(!isChecked)}
+			/>
+			<button onClick={handleButtonClick}>Нажми меня</button>
+			<p>{message}</p>
 			<h3>№2</h3>
-			<textarea value={value2} onChange={handleChange2} />
-			<p>Сумма чисел: {calculateSum()}</p>
+			<label>
+				<input
+					type='checkbox'
+					checked={htmlChecked}
+					onChange={() => setHtmlChecked(!htmlChecked)}
+				/>
+				HTML
+			</label>
+			<br />
+			<label>
+				<input
+					type='checkbox'
+					checked={cssChecked}
+					onChange={() => setCssChecked(!cssChecked)}
+				/>
+				CSS
+			</label>
+			<br />
+			<label>
+				<input
+					type='checkbox'
+					checked={jsChecked}
+					onChange={() => setJsChecked(!jsChecked)}
+				/>
+				JavaScript
+			</label>
+			<p>{htmlChecked && 'Вы знаете HTML.'}</p>
+			<p>{cssChecked && 'Вы знаете CSS.'}</p>
+			<p>{jsChecked && 'Вы знаете JavaScript.'}</p>
 		</div>
 	)
 }
