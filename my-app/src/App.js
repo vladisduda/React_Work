@@ -1,23 +1,50 @@
 import React, { useState } from 'react'
 
 function App() {
-	const texts = ['text1', 'text2', 'text3', 'text4']
-	const [value, setValue] = useState('')
+	const [selectedRadio, setSelectedRadio] = useState('')
 
-	const options = texts.map((text, index) => {
-		return (
-			<option key={index} value={index}>
-				{text}
-			</option>
-		)
-	})
+	const handleRadioChange = event => {
+		setSelectedRadio(event.target.value)
+	}
 
 	return (
 		<div>
-			<select value={value} onChange={event => setValue(event.target.value)}>
-				{options}
-			</select>
-			<p>ваш выбор: {texts[value]}</p>
+			<input
+				type='radio'
+				name='radio'
+				value='1'
+				checked={selectedRadio === '1'}
+				onChange={handleRadioChange}
+			/>
+			<label htmlFor='1'>Python</label>
+
+			<input
+				type='radio'
+				name='radio'
+				value='2'
+				checked={selectedRadio === '2'}
+				onChange={handleRadioChange}
+			/>
+			<label htmlFor='2'>C++</label>
+
+			<input
+				type='radio'
+				name='radio'
+				value='3'
+				checked={selectedRadio === '3'}
+				onChange={handleRadioChange}
+			/>
+			<label htmlFor='3'>JavaScript</label>
+
+			<p>Выбрана радиокнопка с значением: {selectedRadio}</p>
+
+			{selectedRadio === '3' && (
+				<p>
+					Вы выбрали язык программирования JavaScript.
+					<br />
+					Молодец!
+				</p>
+			)}
 		</div>
 	)
 }
