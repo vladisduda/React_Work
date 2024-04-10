@@ -1,60 +1,41 @@
 import React, { useState } from 'react'
 
 function App() {
-	const [isChecked, setIsChecked] = useState(false)
-	const [message, setMessage] = useState('')
-	const [htmlChecked, setHtmlChecked] = useState(false)
-	const [cssChecked, setCssChecked] = useState(false)
-	const [jsChecked, setJsChecked] = useState(false)
+	const [showContent, setShowContent] = useState(false)
 
-	const handleButtonClick = () => {
-		if (isChecked) {
-			setMessage('Приветствую вас!')
-		} else {
-			setMessage('До свидания!')
-		}
+	const toggleContent = () => {
+		setShowContent(!showContent)
 	}
 
 	return (
 		<div>
-			<h3>№1</h3>
+			№1
+			<br />
+			<label htmlFor='ageCheckbox'>Есть ли вам уже 18 лет?</label>
+			<input type='checkbox' id='ageCheckbox' onChange={toggleContent} />
+			{showContent ? (
+				<div>
+					<h2>Ура, вам уже есть 18</h2>
+					<p>Здесь расположен контент только для взрослых.</p>
+				</div>
+			) : (
+				<div>
+					<p>Увы, вам еще нет 18 лет :(</p>
+				</div>
+			)}
+			№2
+			<br />
+			<label htmlFor='visibilityCheckbox'>Показать/скрыть абзац</label>
 			<input
 				type='checkbox'
-				checked={isChecked}
-				onChange={() => setIsChecked(!isChecked)}
+				id='visibilityCheckbox'
+				onChange={() => {
+					const paragraph = document.getElementById('content')
+					paragraph.style.display =
+						paragraph.style.display === 'none' ? 'block' : 'none'
+				}}
 			/>
-			<button onClick={handleButtonClick}>Нажми меня</button>
-			<p>{message}</p>
-			<h3>№2</h3>
-			<label>
-				<input
-					type='checkbox'
-					checked={htmlChecked}
-					onChange={() => setHtmlChecked(!htmlChecked)}
-				/>
-				HTML
-			</label>
-			<br />
-			<label>
-				<input
-					type='checkbox'
-					checked={cssChecked}
-					onChange={() => setCssChecked(!cssChecked)}
-				/>
-				CSS
-			</label>
-			<br />
-			<label>
-				<input
-					type='checkbox'
-					checked={jsChecked}
-					onChange={() => setJsChecked(!jsChecked)}
-				/>
-				JavaScript
-			</label>
-			<p>{htmlChecked && 'Вы знаете HTML.'}</p>
-			<p>{cssChecked && 'Вы знаете CSS.'}</p>
-			<p>{jsChecked && 'Вы знаете JavaScript.'}</p>
+			<p id='content'>Этот абзац видимый по умолчанию</p>
 		</div>
 	)
 }
