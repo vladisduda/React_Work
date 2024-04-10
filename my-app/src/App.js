@@ -1,41 +1,21 @@
 import React, { useState } from 'react'
 
 function App() {
-	const [showContent, setShowContent] = useState(false)
+	const [value, setValue] = useState('')
 
-	const toggleContent = () => {
-		setShowContent(!showContent)
+	function handleChange(event) {
+		setValue(event.target.value)
 	}
 
 	return (
 		<div>
-			№1
-			<br />
-			<label htmlFor='ageCheckbox'>Есть ли вам уже 18 лет?</label>
-			<input type='checkbox' id='ageCheckbox' onChange={toggleContent} />
-			{showContent ? (
-				<div>
-					<h2>Ура, вам уже есть 18</h2>
-					<p>Здесь расположен контент только для взрослых.</p>
-				</div>
-			) : (
-				<div>
-					<p>Увы, вам еще нет 18 лет :(</p>
-				</div>
-			)}
-			№2
-			<br />
-			<label htmlFor='visibilityCheckbox'>Показать/скрыть абзац</label>
-			<input
-				type='checkbox'
-				id='visibilityCheckbox'
-				onChange={() => {
-					const paragraph = document.getElementById('content')
-					paragraph.style.display =
-						paragraph.style.display === 'none' ? 'block' : 'none'
-				}}
-			/>
-			<p id='content'>Этот абзац видимый по умолчанию</p>
+			<select value={value} onChange={handleChange}>
+				<option>Tokyo</option>
+				<option>New York</option>
+				<option>London</option>
+				<option>Paris</option>
+			</select>
+			<p>выбор пользователя: {value}</p>
 		</div>
 	)
 }
