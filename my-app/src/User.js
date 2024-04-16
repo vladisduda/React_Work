@@ -1,12 +1,13 @@
 import React from 'react'
 
-function User({ name, surn, age }) {
+const User = ({ user }) => {
 	return (
-		<tr>
-			<td>{name}</td>
-			<td>{surn}</td>
-			<td>{age}</td>
-		</tr>
+		<div className='user'>
+			<p>Name: {user.name}</p>
+			<p>Surname: {user.surname}</p>
+			<p>Age: {user.age}</p>
+			<br />
+		</div>
 	)
 }
 
