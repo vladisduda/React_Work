@@ -5,8 +5,9 @@ import User from './User' // Подключаем компонент User
 function App() {
 	return (
 		<div>
-			<Product />
-			<User /> {/* Выводим компонент User */}
+			<User />
+			<User />
+			<User />
 		</div>
 	)
 }
