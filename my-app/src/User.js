@@ -1,10 +1,12 @@
 import React from 'react'
 
-function User() {
+function User({ name, surn, age }) {
 	return (
-		<div>
-			<p>какой-нибудь текст из User</p>
-		</div>
+		<tr>
+			<td>{name}</td>
+			<td>{surn}</td>
+			<td>{age}</td>
+		</tr>
 	)
 }
 

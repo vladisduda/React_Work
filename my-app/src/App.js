@@ -1,21 +1,29 @@
 import React from 'react'
-import Product from './Product'
+import User from './User'
+const id = () => Math.random()
+const users = [
+	{ id: id(), name: 'user1', surn: 'surn1', age: 30 },
+	{ id: id(), name: 'user2', surn: 'surn2', age: 31 },
+	{ id: id(), name: 'user3', surn: 'surn3', age: 32 },
+]
 
 function App() {
-	const name1 = 'product1'
-	const cost1 = '100'
-
-	const name2 = 'product2'
-	const cost2 = '100'
-
-	const name3 = 'product3'
-	const cost3 = '100'
-
 	return (
 		<div>
-			<Product name={name1} cost={cost1} />
-			<Product name={name2} cost={cost2} />
-			<Product name={name3} cost={cost3} />
+			<table>
+				<thead>
+					<tr>
+						<th>Name</th>
+						<th>Surname</th>
+						<th>Age</th>
+					</tr>
+				</thead>
+				<tbody>
+					{users.map(user => (
+						<User key={user.id} {...user} />
+					))}
+				</tbody>
+			</table>
 		</div>
 	)
 }
