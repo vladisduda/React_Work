@@ -1,12 +1,11 @@
 import React from 'react'
 import Product from './Product'
-import User from './User' // Подключаем компонент User
+import User from './User'
 
 function App() {
 	return (
 		<div>
-			<Product />
-			<User /> {/* Выводим компонент User */}
+			<User />
 		</div>
 	)
 }
