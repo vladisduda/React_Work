@@ -1,23 +1,31 @@
-import React, { useState } from 'react'
+import React from 'react'
 
-const User = ({ user }) => {
-	const [isBanned, setIsBanned] = useState(false)
-
-	const handleBanClick = () => {
-		setIsBanned(true)
-	}
-
+function User({ id, name, surname, age, isEdit, toggleMode, editUser }) {
 	return (
-		<div className='user'>
-			<p>id: {user.id}</p>
-			<p>Name: {user.name}</p>
-			<p>Surname: {user.surname}</p>
-			<p>Age: {user.age}</p>
-			{isBanned ? (
-				<p style={{ color: 'red' }}>Пользователь в бане</p>
+		<div>
+			<span>Имя:</span>{' '}
+			{isEdit ? (
+				<input value={name} onChange={event => editUser(id, 'name', event)} />
 			) : (
-				<button onClick={handleBanClick}>Забанить пользователя</button>
+				<span>{name}</span>
 			)}
+			<br />
+			<span>Фамилия:</span>{' '}
+			{isEdit ? (
+				<input
+					value={surname}
+					onChange={event => editUser(id, 'surname', event)}
+				/>
+			) : (
+				<span>{surname}</span>
+			)}
+			<br />
+			<span>Возраст:</span> {age}
+			<br />
+			<button onClick={() => toggleMode(id)}>
+				{isEdit ? 'Сохранить' : 'Редактировать'}
+			</button>
+			<br />
 			<br />
 		</div>
 	)
