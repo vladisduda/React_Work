@@ -5,12 +5,14 @@ function Users() {
 	const [users, setUsers] = useState(initUsers)
 
 	function toggleMode(id) {
-		setUsers(prevUsers =>
-			prevUsers.map(userItem =>
-				userItem.id === id
-					? { ...userItem, isEdit: !userItem.isEdit }
-					: userItem
-			)
+		setUsers(
+			users.map(user => {
+				if (user.id === id) {
+					user.isEdit = !user.isEdit
+				}
+
+				return user
+			})
 		)
 	}
 
@@ -31,8 +33,8 @@ function Users() {
 			name={user.name}
 			age={user.age}
 			isEdit={user.isEdit}
-			toggleMode={toggleMode}
-			editUser={editUser}
+			toggleMode={() => toggleMode(user.id)}
+			editUser={(id, fieldId, event) => editUser(id, fieldId, event)}
 		/>
 	))
 

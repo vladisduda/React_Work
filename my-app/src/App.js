@@ -1,7 +1,6 @@
 import React from 'react'
 import User from './User'
 
-// Функция для генерации случайных ID
 const generateId = () => Math.random()
 
 const initUsers = [
@@ -10,7 +9,7 @@ const initUsers = [
 		name: 'user1',
 		surname: 'surn1',
 		age: 30,
-		isEdit: false,
+		isEdit: true,
 	},
 	{
 		id: generateId(),
@@ -38,8 +37,6 @@ const App = () => {
 					surname={user.surname}
 					age={user.age}
 					isEdit={user.isEdit}
-					toggleMode={() => toggleMode(user.id)}
-					editUser={(id, fieldId, event) => editUser(id, fieldId, event)}
 				/>
 			))}
 		</div>

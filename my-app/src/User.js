@@ -5,17 +5,14 @@ function User({ id, name, surname, age, isEdit, toggleMode, editUser }) {
 		<div>
 			<span>Имя:</span>{' '}
 			{isEdit ? (
-				<input value={name} onChange={event => editUser(id, 'name', event)} />
+				<input onChange={event => editUser(id, 'name', event)} />
 			) : (
 				<span>{name}</span>
 			)}
 			<br />
 			<span>Фамилия:</span>{' '}
 			{isEdit ? (
-				<input
-					value={surname}
-					onChange={event => editUser(id, 'surname', event)}
-				/>
+				<input onChange={event => editUser(id, 'surname', event)} />
 			) : (
 				<span>{surname}</span>
 			)}
